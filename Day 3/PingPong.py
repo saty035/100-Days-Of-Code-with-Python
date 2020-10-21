@@ -4,6 +4,7 @@
 
 import turtle
 import winsound     #for windows  'os' for macs
+import time
 
 wn=turtle.Screen()
 wn.title("Ping Pong By saty035")
@@ -44,8 +45,8 @@ ball.color('gold')
 ball.penup()  #stop the drawing
 ball.goto(0,0)
 
-ball.dx=.2  #our ball move by 2 pixel everytime
-ball.dy=-.2  #set the value according to your system
+ball.dx= 1/5 #our ball move by 2 pixel everytime
+ball.dy= 1/5 #set the value according to your system
 
 #pen
 pen=turtle.Turtle()
@@ -90,8 +91,8 @@ while True:
     wn.update()
 
     #move the ball
-    ball.setx(ball.xcor()+ ball.dx)
-    ball.sety(ball.ycor()+ ball.dy)
+    ball.setx(ball.xcor() + ball.dx)
+    ball.sety(ball.ycor() + ball.dy)
 
     #border checking
     if ball.ycor()>290:
@@ -109,6 +110,7 @@ while True:
         winsound.PlaySound('yummy.wav',winsound.SND_ASYNC)
         pen.clear()
         pen.write("Player A: {} Player B: {}".format(score_a,score_b),align="center",font=("Courier",24,"italic"))
+        time.sleep(1)
 
     if ball.xcor()<-390:
         ball.goto(0,0)
@@ -117,15 +119,19 @@ while True:
         winsound.PlaySound('yummy.wav',winsound.SND_ASYNC)
         pen.clear()
         pen.write("Player A: {} Player B: {}".format(score_a,score_b),align="center",font=("Courier",24,"italic"))
+        time.sleep(1)
 
     #paddle and all collisions
     if (ball.xcor()>340 and ball.xcor()<350) and ball.ycor()<paddle_b.ycor()+40 and ball.ycor()>paddle_b.ycor()-40:
         ball.setx(340)
         ball.dx *= -1
+       
 
-    if (ball.xcor()<-340 and ball.xcor()>-350) and ball.ycor()<paddle_a.ycor()+40 and ball.ycor()>paddle_b.ycor()-40:
+
+    if (ball.xcor()<-340 and ball.xcor()>-350) and ball.ycor()<paddle_a.ycor()+40 and ball.ycor()>paddle_a.ycor()-40:
         ball.setx(-340)
         ball.dx *= -1
+  
 
 
 
